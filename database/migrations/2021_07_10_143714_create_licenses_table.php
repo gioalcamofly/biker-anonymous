@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCyclistsTable extends Migration
+class CreateLicensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCyclistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cyclists', function (Blueprint $table) {
+        Schema::create('licenses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('mail');
             $table->string('address');
-            $table->bigInteger('license_number');
+            $table->bigInteger('license_number')->unique();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateCyclistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cyclists');
+        Schema::dropIfExists('licenses');
     }
 }
