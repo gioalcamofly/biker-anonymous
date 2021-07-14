@@ -46,4 +46,22 @@ class UserController extends Controller {
         ], 201);  
 
     }
+
+    /**
+     * Creates a new admin user
+     * 
+     * @param App\Http\Requests\CreateUserRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function registerAdmin(CreateUserRequest $request) { 
+        
+        $user = User::create($request->all()); 
+        $user->role = 'admin';
+        $user->save();
+
+        return response()->json([
+            'access_token' => $user->createToken('BA')->accessToken,
+        ], 201);  
+
+    }
 }

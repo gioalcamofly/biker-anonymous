@@ -23,4 +23,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('upload-file', [LicenseController::class, 'uploadFile']);
     Route::get('get-license-pdf', [LicenseController::class, 'getLicensePdf']);
     Route::get('send-email', [LicenseController::class, 'sendEmail'])->middleware('role:admin');
+    Route::post('register-admin', [UserController::class, 'registerAdmin'])->middleware('role:admin');
 });

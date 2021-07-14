@@ -200,6 +200,61 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "registerAdmin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDA3ODY2MGFhYTY3NDI1NDY0YmNkYzk2MDkwYTE1NDFkOTNjNjZkYTVhYWNmYjUwYWI1OTYyMDk0ZjUxOThiN2E1YTgyMDg1OTE4MTQ1ZTQiLCJpYXQiOjE2MjYwMDc3ODUuMDI3ODA4LCJuYmYiOjE2MjYwMDc3ODUuMDI3ODEyLCJleHAiOjE2NTc1NDM3ODQuODIwNjM4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.irNLwDqToPa9gjoI8KVBUVWYYsLYd8-p_yy_Jg60O5fGUquYQC_YL-LAuoQMSbS7qz26S6tCGzpqnoPg5K6Ny-hIE08e-hqzRLNgd91gY9-14LEIPoRWOUQsCYn_bHfur-r-gcW38wKnFR-8vvgPhFVmjWuBJj7iW_LW41lwTNMSb0nycUguJFnYnlYR9M0AChm-ssqPYVQpyLHvyADvOgN5mgUEXZtDXmeDOJjoVhNnH9FjmLY0FubnrQDPrYt2MavUkq2oT0Xc8kSJxC8f_dZPKNnPXF8ViGdn7v5dtduGGYzwpGAvBdyRRz44V1WakJZa_EdT-nP5w9I8nAd9AybXaDD1MCuOK5Vu4nBg5TNAKacaWQx7g58pmVeQ0r7RaHDcwX28mL6-bGZNTytEeAUbJ2gUZrcqpmNKvg6XcUYZ-VViI6Eo44667TV1YryMd9KBbvXJqt-7KSDIfJ-Du52wSAg7obaJII6065RJwdo9-3fnIPtulasaiPkmY5PgR-5UzkYmLWgQ0FSpdLwlKEXqwzbmvRsnKv-mBLS5QlauN9ve-u9tqF9NODSQOBWhrAW5Ayz6ejsZqAO8W7FVdR_8v4f5MBSicn_r_-yGHomX42Pk9sQVPihZ-KsUrTVmPJ8-m12XlsSIYSa-OXNtEkaQMXmpJVYGe7FXWAItHqg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "admin@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:80/api/register-admin",
+					"host": [
+						"localhost"
+					],
+					"port": "80",
+					"path": [
+						"api",
+						"register-admin"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
