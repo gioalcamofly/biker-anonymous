@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\License;
 use Illuminate\Http\Request;
+use App\Http\Requests\UploadFileRequest;
+use App\Http\Requests\GetLicenseRequest;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -15,10 +17,10 @@ class LicenseController extends Controller
     /**
      * Update a licenses file for later processing
      * 
-     * @param \Illuminate\Http\Request $request
+     * @param App\Http\Requests\UploadFileRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function uploadFile(Request $request) {
+    public function uploadFile(UploadFileRequest $request) {
 
         $path = $request->file('file')->store(Carbon::now()->format('d-m-Y'));
 
@@ -29,10 +31,10 @@ class LicenseController extends Controller
     /**
      * Returns a license pdf file from the required license (using license number)
      * 
-     * @param \Illuminate\Http\Request $request
+     * @param App\Http\Requests\GetLicenseRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function getLicensePdf(Request $request) {
+    public function getLicensePdf(GetLicenseRequest $request) {
 
         $license = License::where('license_number', $request->input('license_number'))->first();
 

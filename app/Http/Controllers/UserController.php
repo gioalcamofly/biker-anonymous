@@ -14,7 +14,7 @@ class UserController extends Controller {
     /**
      * Logs in an already created user
      * 
-     * @param \Illuminate\Http\Request $request
+     * @param App\Http\Requests\LoginRequest $request
      * @return \Illuminate\Http\Response
      */
     public function login(LoginRequest $request) { 
@@ -35,7 +35,7 @@ class UserController extends Controller {
     /**
      * Creates a new user
      * 
-     * @param \Illuminate\Http\Request $request
+     * @param App\Http\Requests\CreateUserRequest $request
      * @return \Illuminate\Http\Response
      */
     public function register(CreateUserRequest $request) { 
