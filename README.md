@@ -1,62 +1,38 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Biker anonymous
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+***Requirements***
 
-## About Laravel
+- Have Docker installed on your device with WSL2
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+***Installation***
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Pull this repository on your local machine
+- Open a terminal and enter `wsl` to enter Linux Kernel
+- On the project root, execute `alias sail="bash ./vendor/bin/sail`
+- Execute `sail up` (This will start the Docker services)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+***Usage***
 
-## Learning Laravel
+Once the Docker services are up and running, you can test the API endpoints on `localhost:80`. In the file biker-anonymous.postman_collection.json you have an example of how to properly use the API. 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+IMPORTANT: there are some API routes that requires an authorization token. To get this token you should register a new user (`/api/register`) and take the access token given in the response. If you have already created an user, you should log in (`/api/login`) with your data and take the access token given. This token has to be copied on the header of the other requests (register and login are the only ones that don't need authentication). The header should be like this: `Authorization:Bearer [YOUR_TOKEN]`.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+*Admin User*
 
-## Laravel Sponsors
+By default, all the users created will have an 'employee' role. With that role, it's unathourized to use the endpoint `/api/send-email`, only users with 'admin' role can. For security reasons, in the public endpoint it's not available the creation of an 'admin' user, only another admin can do it. If you don't have another admin (first time using this project), you will have to manually edit the database. After doing so, you will be able to create another admin users using the endpoint `/api/register-admin`.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+*E-mails*
 
-### Premium Partners
+To see the emails sent using the endpoint `/api/send-email` you have to access the Mailhog browser in `localhost:8025`.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+*Cron Job*
 
-## Contributing
+There is a scheduled job to be executed daily at 23:30 to process the CSV files with the licenses. To execute that, it's necessary to add a cron job on your machine that executes the command `sail artisan schedule:run`. Linux example:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`30 23 * * * cd /path-to-your-project && ./vendor/bin/sail artisan schedule:run >> /dev/null 2>&1`
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

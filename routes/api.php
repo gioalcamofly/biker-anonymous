@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LicenseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,8 @@ Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get('test', [UserController::class, 'test']);
+    Route::post('upload-file', [LicenseController::class, 'uploadFile']);
+    Route::get('get-license-pdf', [LicenseController::class, 'getLicensePdf']);
+    Route::get('send-email', [LicenseController::class, 'sendEmail'])->middleware('role:admin');
+    Route::post('register-admin', [UserController::class, 'registerAdmin'])->middleware('role:admin');
 });
