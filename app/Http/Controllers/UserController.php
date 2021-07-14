@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
 
+    /**
+     * Logs in an already created user
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function login(LoginRequest $request) { 
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) { 
@@ -26,6 +32,12 @@ class UserController extends Controller {
 
     }
 
+    /**
+     * Creates a new user
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function register(CreateUserRequest $request) { 
         
         $user = User::create($request->all()); 
@@ -34,8 +46,4 @@ class UserController extends Controller {
         ], 201);  
 
     }
-
-    public function test() { 
-        return response()->json('test', 200); 
-    } 
 }
