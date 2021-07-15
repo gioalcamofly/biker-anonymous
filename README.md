@@ -8,6 +8,14 @@
 
 - Pull this repository on your local machine
 - Open a terminal and enter `wsl` to enter Linux Kernel
+- Install composer dependencies: 
+  
+  `docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/opt \
+    -w /opt \
+    laravelsail/php80-composer:latest \
+    composer install --ignore-platform-reqs`
 - On the project root, execute `alias sail="bash ./vendor/bin/sail`
 - Execute `sail up` (This will start the Docker services)
 
